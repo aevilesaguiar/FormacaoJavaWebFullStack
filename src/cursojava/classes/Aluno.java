@@ -182,12 +182,26 @@ public class Aluno {
 
 	public boolean getAlunoAprovado() {
 		
-		double media =this.getMediaNota();
 		
-		if(media>=70) {
+		double media = this.getMediaNota();
+		if (media >= 70) { // Aprovado
 			return true;
-		}else {
+		} else { // Reprovado
 			return false;
+		}
+	}
+
+	public String getAlunoAprovado2() {
+		
+		double media = this.getMediaNota();
+		if (media >= 50) {
+			if (media >= 70) {
+				return StatusAluno.APROVADO;				
+			} else {
+				return StatusAluno.RECUPERACAO;
+			}
+		} else {
+			return StatusAluno.REPROVADO;
 		}
 	}
 
