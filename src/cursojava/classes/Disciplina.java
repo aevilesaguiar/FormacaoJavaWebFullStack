@@ -1,13 +1,16 @@
 package cursojava.classes;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * Classe que representa uma Disciplina
  */
 public class Disciplina {
 
-	// Notas e disciplinas do aluno
+	// cada disciplina terá 4 notas durante o ano
 	private String disciplina;
-	private double nota;
+	private double[] nota= new double[3];
 
 	public String getDisciplina() {
 		return disciplina;
@@ -17,27 +20,41 @@ public class Disciplina {
 		this.disciplina = disciplina;
 	}
 
-	public double getNota() {
+
+
+	public double[] getNota() {
 		return nota;
 	}
 
-	public void setNota(double nota) {
+	public void setNota(double[] nota) {
 		this.nota = nota;
 	}
+	
+	public double getMediaNotas() {
+		double somaTotal=0.0;
+		
+		for (int i = 0; i < nota.length; i++) {
+			somaTotal+=nota[i];
+		}
+		return somaTotal/nota.length;
+	}
+	
+	
 
 	@Override
 	public String toString() {
-		return "Disciplina [disciplina=" + disciplina + ", nota=" + nota + "]";
+		return "Disciplina [disciplina=" + disciplina + ", nota=" + Arrays.toString(nota) + ", getDisciplina()="
+				+ getDisciplina() + ", getNota()=" + Arrays.toString(getNota()) + ", getMediaNotas()=" + getMediaNotas()
+				+ ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()=" + super.toString()
+				+ "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(nota);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + Arrays.hashCode(nota);
+		result = prime * result + Objects.hash(disciplina);
 		return result;
 	}
 
@@ -50,14 +67,8 @@ public class Disciplina {
 		if (getClass() != obj.getClass())
 			return false;
 		Disciplina other = (Disciplina) obj;
-		if (disciplina == null) {
-			if (other.disciplina != null)
-				return false;
-		} else if (!disciplina.equals(other.disciplina))
-			return false;
-		if (Double.doubleToLongBits(nota) != Double.doubleToLongBits(other.nota))
-			return false;
-		return true;
+		return Objects.equals(disciplina, other.disciplina) && Arrays.equals(nota, other.nota);
 	}
 
+	
 }

@@ -51,6 +51,7 @@ public class PrimeiraClasseJava {
 				String serieMatriculado = JOptionPane.showInputDialog("Digite a série do aluno:");
 				String nomeEscola = JOptionPane.showInputDialog("Digite o nome da escola do aluno:");	*/			
 				
+
 				Aluno aluno1 = new Aluno();
 				
 				// Dados do aluno1
@@ -72,7 +73,7 @@ public class PrimeiraClasseJava {
 					
 					Disciplina disciplina = new Disciplina();
 					disciplina.setDisciplina(nomeDisciplina);
-					disciplina.setNota(Double.valueOf(notaDisciplina));
+				//	disciplina.setNota(Double.valueOf(notaDisciplina));
 					
 					aluno1.getDisciplinas().add(disciplina);
 				}
