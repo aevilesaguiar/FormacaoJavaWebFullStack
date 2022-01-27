@@ -8,7 +8,10 @@ import javax.swing.JOptionPane;
 
 import cursojava.classes.Aluno;
 import cursojava.classes.Disciplina;
+import cursojava.classes.Secretario;
+import cursojava.classesauxiliares.FuncaoAutenticacao;
 import cursojava.constantes.StatusAluno;
+import cursojava.interfaces.PermitirAcesso;
 
 public class PrimeiraClasseJava {
 
@@ -20,7 +23,9 @@ public class PrimeiraClasseJava {
 		String login = JOptionPane.showInputDialog("Informe o login:");
 		String senha = JOptionPane.showInputDialog("Informe a senha:");
 		
-		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+		
+		
+		if (new FuncaoAutenticacao(new Secretario(login,senha)).autenticar()) {
 			
 			JOptionPane.showMessageDialog(null, "Acesso liberado ao sistema! Pressione OK!");
 			

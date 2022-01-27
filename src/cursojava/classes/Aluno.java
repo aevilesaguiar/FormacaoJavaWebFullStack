@@ -6,56 +6,37 @@ import java.util.Objects;
 
 import cursojava.constantes.StatusAluno;
 
-public class Aluno {
+public class Aluno extends Pessoa {
 
-	/*atributos*/
-	private String nome;
-	private int idade;
-	private String dataNascimento;
-	private String registroGeral;
-	private String numeroCpf;
-	private String nomeMae;
-	private String nomePai;
+	/* atributos */
+
 	private String dataMatricula;
 	private String nomeEscola;
 	private String serieMatriculado;
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
-	//lista de Disciplinas
-	private List<Disciplina>disciplinas = new ArrayList<Disciplina>();
-	
-	
 	public List<Disciplina> getDisciplinas() {
 		return disciplinas;
 	}
-
 
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
 
-
-	/*Cria os dados  na memória- Padrão do Java*/
+	/* Cria os dados na memória- Padrão do Java */
 	public Aluno() {
 	}
-	
-	
-	/*Cria os dados  na memória- Padrão do Java*/
+
+	/* Cria os dados na memória- Padrão do Java */
 	public Aluno(String nome) {
-		this.nome = nome;
-		
+		super.nome = nome;
+
 	}
-	
-	
+
 	public Aluno(String nome, int idade) {
-		this.nome=nome;
-		this.idade=idade;
+		this.nome = nome;
+		super.idade = idade;
 	}
-	
-	
-	
-
-
-
 
 	public Aluno(String nome, int idade, String serieMatriculado, double nota1, double nota2, double nota3,
 			double nota4) {
@@ -66,123 +47,101 @@ public class Aluno {
 
 	}
 
-
-	//Métodos getters e setters do objeto
-	//Set é para adicionar ou receber dados para os atributos
-	//Get é para resgatar ou obter o valor do atributo
+	// Métodos getters e setters do objeto
+	// Set é para adicionar ou receber dados para os atributos
+	// Get é para resgatar ou obter o valor do atributo
 	public String getNome() {
 		return nome;
 	}
 
-	//recebe dados 
+	// recebe dados
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 	public int getIdade() {
 		return idade;
 	}
 
-
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-
 
 	public String getDataNascimento() {
 		return dataNascimento;
 	}
 
-
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-
 
 	public String getRegistroGeral() {
 		return registroGeral;
 	}
 
-
 	public void setRegistroGeral(String registroGeral) {
 		this.registroGeral = registroGeral;
 	}
-
 
 	public String getNumeroCpf() {
 		return numeroCpf;
 	}
 
-
 	public void setNumeroCpf(String numeroCpf) {
 		this.numeroCpf = numeroCpf;
 	}
-
 
 	public String getNomeMae() {
 		return nomeMae;
 	}
 
-
 	public void setNomeMae(String nomeMae) {
 		this.nomeMae = nomeMae;
 	}
-
 
 	public String getNomePai() {
 		return nomePai;
 	}
 
-
 	public void setNomePai(String nomePai) {
 		this.nomePai = nomePai;
 	}
-
 
 	public String getDataMatricula() {
 		return dataMatricula;
 	}
 
-
 	public void setDataMatricula(String dataMatricula) {
 		this.dataMatricula = dataMatricula;
 	}
-
 
 	public String getNomeEscola() {
 		return nomeEscola;
 	}
 
-
 	public void setNomeEscola(String nomeEscola) {
 		this.nomeEscola = nomeEscola;
 	}
-
 
 	public String getSerieMatriculado() {
 		return serieMatriculado;
 	}
 
-
 	public void setSerieMatriculado(String serieMatriculado) {
 		this.serieMatriculado = serieMatriculado;
 	}
 
-
 	public double getMediaNota() {
-		
+
 		double somaNotas = 0.0;
 		for (Disciplina disciplina : disciplinas) {
-			somaNotas+=disciplina.getNota();
+			somaNotas += disciplina.getNota();
 		}
-		return somaNotas/disciplinas.size();//size() retorna quantas disciplinas tem na lista
+		return somaNotas / disciplinas.size();// size() retorna quantas disciplinas tem na lista
 	}
-	
 
 	public boolean getAlunoAprovado() {
-		
-		
+
 		double media = this.getMediaNota();
 		if (media >= 70) { // Aprovado
 			return true;
@@ -192,11 +151,11 @@ public class Aluno {
 	}
 
 	public String getAlunoAprovado2() {
-		
+
 		double media = this.getMediaNota();
 		if (media >= 50) {
 			if (media >= 70) {
-				return StatusAluno.APROVADO;				
+				return StatusAluno.APROVADO;
 			} else {
 				return StatusAluno.RECUPERACAO;
 			}
@@ -205,21 +164,29 @@ public class Aluno {
 		}
 	}
 
+	@Override
+	public boolean maiorDeIdade() {
+		
+		return super.maiorDeIdade();
+	}
 	
+	public String msgMaiorIdade() {
+		return this.maiorDeIdade()?"Maior de idade":"Menor de Idade";
+	}
 
 	@Override
 	public String toString() {
-		return "Aluno [nome=" + nome + ", idade=" + idade + ", serieMatriculado="
-				+ serieMatriculado +"]";
+		return "Aluno [dataMatricula=" + dataMatricula + ", nomeEscola=" + nomeEscola + ", serieMatriculado="
+				+ serieMatriculado + ", disciplinas=" + disciplinas + ", nome=" + nome + ", idade=" + idade
+				+ ", dataNascimento=" + dataNascimento + ", registroGeral=" + registroGeral + ", numeroCpf=" + numeroCpf
+				+ ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + "]";
 	}
-
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(dataMatricula, dataNascimento, idade, nome, nomeEscola, nomeMae, nomePai, numeroCpf,
 				registroGeral, serieMatriculado);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -238,10 +205,10 @@ public class Aluno {
 				&& Objects.equals(serieMatriculado, other.serieMatriculado);
 	}
 
-
-	
-	
-
-	
+	@Override
+	public double salario() {
+		
+		return 0;
+	}
 
 }
