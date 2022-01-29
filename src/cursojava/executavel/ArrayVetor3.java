@@ -63,7 +63,7 @@ public class ArrayVetor3 {
 			System.out.println("A maior nota da disciplina " + d.getDisciplina()+" é "+notaMax );
 			System.out.println("A menor nota da disciplina " + d.getDisciplina()+" é "+notaMin );
 		}
-
+fffff
 	}
 
 }
